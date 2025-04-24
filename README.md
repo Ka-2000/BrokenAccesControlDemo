@@ -91,3 +91,49 @@ Le resultat est FORBIDDEN ❌
 ```sh
 Forbidden GET
 ```
+
+---
+
+#PATCH DE CORRECTION A CETTE FAILLE : 
+
+Il suffit simplement d'ajouter une condition qui permettra de sécuriser l'accès aux droits aux utilisateurs : 
+
+Remplacer ce code : 
+```sh
+app.delete("/api/user/:id", (req, res) => {
+  res.send(`User ID ${req.params.id} deleted (vulnérable !)`);
+});
+```
+
+Par ce code : 
+```sh
+app.delete("/api/user/:id", (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).send("Forbidden DELETE – admin only");
+  }
+
+  res.send(`User ID ${req.params.id} deleted (secure route)`);
+});
+```
+
+Une fois les modifications faites, on peut essayer a nouveau la requete suivante :
+
+En tant que user=2 (non admin) : 
+```sh
+curl -X DELETE "http://localhost:3000/api/user/1?user=2"
+```
+
+Résultat ⬇️
+```sh
+Forbidden DELETE – admin only
+```
+
+En tant que user=1 (admin) :
+```sh
+curl -X DELETE "http://localhost:3000/api/user/2?user=1"
+```
+
+Résultat ⬇️
+```sh
+User ID 2 deleted (secure route)
+```
