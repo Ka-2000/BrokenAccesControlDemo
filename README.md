@@ -12,7 +12,7 @@ broken-access-control-demo/
 
 ---
 
-#Tutorial 
+# Tutorial 
 
 + Cloner le projet ⬇️
 
@@ -90,7 +90,7 @@ Forbidden GET
 
 ---
 
-#PATCH DE CORRECTION A CETTE FAILLE : 
+# PATCH DE CORRECTION A CETTE FAILLE : 
 
 Il suffit simplement d'ajouter une condition qui permettra de sécuriser l'accès aux droits aux utilisateurs : 
 
