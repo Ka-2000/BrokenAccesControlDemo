@@ -1,9 +1,5 @@
 # BrokenAccesControlDemo
 
-Le but de ce code est de proposer une demonstration d'une faille Broken Access Control plus précisement par contournement des contrôles d'accès via des méthodes HTTP. 
-
----
-
 Pour cette démonstration, un petit serveur Express en Node.js à était mis en place pour démontrer cette faille de Broken Access Control via HTTP Method Tampering.
 
 + Voici l'arborescence du projet : 
